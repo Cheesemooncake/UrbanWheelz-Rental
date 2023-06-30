@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./components/head.ejs') %>
+  <%- include('./components/header.ejs') %>
+
+<body>
+  <div>
+    <script>
+      function add() {
+        let json = {
+          name:document.getElementById("name").value,
+          lastname:document.getElementById("lastname").value,
+          startRegistration : document.getElementById("startRegistration").value,
+          endRegistration: document.getElementById("endRegistration").value
+      }
+        fetch('/addUser', {
+                method: "POST",
+                headers: { 'Content-Type': "application/json;charset=UTF-8" },
+                body: JSON.stringify(json)
+            }).then(()=>{let root = document.querySelector('div');
+            root.innerHTML = `<h1>Успешно</h1>`})
+    }
+    </script>
+  <h1>Add user:</h1>
+      <label>Name
+        <input type="text" id="name">
+      </label><br><br>
+      <label>Surname
+        <input type="text" id="lastname">
+      </label><br><br>
+      <label>Start of registration
+        <input type="date" id="startRegistration">
+      </label><br><br>
+      <label>End of registration
+        <input type="date" id="endRegistration">
+      </label><br><br>
+      <input type="button" value="Add" onclick="add()">
+  >
+  </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./components/head.ejs') %>
+  <%- include('./components/header.ejs') %>
+<body>
+  <div>
+ <script>
+    function add() {
+      let json = {
+        name:document.getElementById("name").value,
+        author:document.getElementById("author").value,
+       date : document.getElementById("date").value,
+       count : document.getElementById("count").value
+    }
+      fetch('/addTransport', {
+              method: "POST",
+              headers: { 'Content-Type': "application/json;charset=UTF-8" },
+              body: JSON.stringify(json)
+          }).then(()=>{let root = document.querySelector('div');
+          root.innerHTML = `<h1>Success</h1>`})
+  }
+  </script>
+      <label>Name
+        <input type="text" id="name">
+      </label>
+      <label>Model
+        <input type="text" id="author">
+      </label>
+      <label>Addition date 
+        <input type="date" id="date">
+      </label>
+      <label>Amount
+        <input type="number" id="count">
+      </label>
+    <input type="button" value="Add" onclick="add()"></label></div>
+</body>
+</html>

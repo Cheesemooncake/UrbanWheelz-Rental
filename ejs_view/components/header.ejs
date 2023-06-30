@@ -1,0 +1,36 @@
+<header>
+    <nav>
+        <ul>
+            <li><a href="/transports">transport</a></li>
+            <li><a href="/users">users</a></li>
+          <li><a href="/return">return transport</a></li>
+          <li><a href="/addTransport">add transport</a></li>
+          <li><a href="/addCopys">add transport copy</a></li>
+          <li><a href="/addUser">add user</a></li>
+          <li><a href="/giveTransport">give transport</a></li>
+        </ul>
+      </nav>
+
+      <script>
+        var savedUsername = localStorage.getItem("username");
+      
+        if (savedUsername) {
+          displayGreeting(savedUsername);
+        } else {
+          var username = prompt("Please, enter your name:");
+          localStorage.setItem("username", username);
+          displayGreeting(username);
+        }
+      
+        function displayGreeting(username) {
+          var greeting = document.createElement("span");
+          greeting.textContent = "Welcome, " + username + "!";
+      
+          var header = document.querySelector("header");
+          header.appendChild(greeting);
+        }
+
+      </script>
+      
+</header>
+

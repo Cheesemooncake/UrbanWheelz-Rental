@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./components/head.ejs') %>
+  <%- include('./components/header.ejs') %>
+
+  <body>
+    <div><script>
+  function del(){
+    fetch('/deleting', {
+      method: "POST",
+      body: document.getElementById('idForDelete').innerHTML
+  }).then(()=>{let root = document.querySelector('div');
+  root.innerHTML = `<h1>Success</h1>`})
+  }
+</script>
+    <h2 style="text-align: center;">
+      Transport:
+    </h2>
+      <article>
+          <span><span style="color: gray;">Name: </span><%= transport[0].name %></span><br>
+          <span><span style="color: gray;" >ID: </span><div id = "idForDelete"><%= transport[0]._id %></div></span><br>
+            <input type="button" value="Delete" onclick="del()">
+      </article>
+
+  <h2 style="text-align: center;">
+    Instances:
+  </h2>
+        <% transport.forEach(({ copys}) => { %>
+          <li>
+            <article>
+                <span><span style="color: gray;">Instance ID: </span><%=copys. _id %></span><br>
+                <span><span style="color: gray;">Addition date: </span><%= copys.date || 'No date' %></span><br>
+                <span class="date_review"><span style="color: gray;">status: </span><%= copys.status %></span><br>
+           
+            </article>
+          </li>
+          <% }) %>
+
+    </div>
+  </body>
+</html>

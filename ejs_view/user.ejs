@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./components/head.ejs') %>
+    <%- include('./components/header.ejs') %>
+  <body><div><script>
+    function del(){
+        fetch('/deletingUser', {
+          method: "POST",
+          body: document.getElementById('idForDelete').innerHTML
+      }).then(()=>{let root = document.querySelector('div');
+      root.innerHTML = `<h1>Успешно</h1>`})
+      }
+    </script>
+    <h2 style="text-align: center;">
+        User:
+      </h2>
+      <article>
+        <br>
+          <span><span style="color:hsla(224, 100%, 41%, 0.541)">Name: </span><%= user[0].name %></span><br>
+          <span><span style="color:hsla(224, 100%, 41%, 0.541)">Surname: </span><%= user[0].lastname %></span><br>
+          <span><span style="color:hsla(224, 100%, 41%, 0.541)">Ticket Number: </span><div id = 'idForDelete'><%= user[0].ticket %></div></span><br>
+          <span><span style="color:hsla(224, 100%, 41%, 0.541)">Date of Registration: </span><%= user[0].startRegistration %></span><br>
+          <span><span  style="color:hsla(224, 100%, 41%, 0.541)">Registration End Date: </span><%= user[0].endRegistration %></span>
+          <input type="button" value="Delete" onclick="del()">
+      </article>
+
+  <h2 style="text-align: center;">
+    Rented:
+  </h2>
+
+
+        <% if(user[0].transports != null ){user.forEach(({transports, transportData}) => { %>
+          <li>
+            <article>
+              <div class="info">
+                <span><span style="color:hsla(224, 100%, 41%, 0.541)">Instance ID: </span><%= transportData[0]._id %></span><br>
+                <span><span style="color:hsla(224, 100%, 41%, 0.541)">Name: </span><%= transportData[0].name %></span><br>
+                <span><span style="color:hsla(224, 100%, 41%, 0.541)">Model: </span><%= transportData[0].author %></span><br>
+              </div>
+             
+              <span><span style="color:hsla(224, 100%, 41%, 0.541)">Return date: </span>
+                <%= transports.endDate || 'No date' %>
+            </span><br>
+              <span><span style="color:hsla(224, 100%, 41%, 0.541)">Date of issue: </span><%= transports.startDate || 'No date' %></span><br>
+                <span><span style="color:hsla(224, 100%, 41%, 0.541)">Status: </span><%= transports.status %></span><br>
+            </article>
+          </li>
+          <% }) %>
+          <% } %>
+
+        </div>
+  </body>
+
+</html>

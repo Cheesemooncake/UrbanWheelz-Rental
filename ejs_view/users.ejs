@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./components/head.ejs') %>
+    <%- include('./components/header.ejs') %>
+  <body>
+      <h1 style="text-align: center;">List of users:</h1>
+  
+        <% if (result.length) { %>
+          <% result.forEach(({ _id, name, lastname}) => { %>
+            <li>
+              <article>
+                  <a href="/users/<%= _id %>">
+                    <span style="color: white;"><span style="color:hsla(272, 30%, 18%, 0.541);">Surname: </span><%= lastname %></span>
+                  </a>
+                <p>
+                  <span><span style="color: hsla(272, 30%, 18%, 0.541);">Name: </span><%= name %></span>
+                </p>
+              </article>
+            </li>
+            <% }) %>
+              <% } %>
+
+  </body>
+
+</html>
